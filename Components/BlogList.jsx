@@ -51,7 +51,7 @@ function BlogList() {
         </button>
       </div>
 
-      <div className="flex flex-wrap justify-around gap-1 gap-y-10 mb-16 xl:mx-24">
+      <div className="flex flex-wrap justify-around gap-2 gap-y-10 mb-16 xl:mx-24">
         {blog_data
           .filter((item) => menu === "All" ? item : item.category === menu).map((item) => {
             return <BlogItem key={item.id} {...item} />;
