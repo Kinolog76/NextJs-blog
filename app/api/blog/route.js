@@ -9,17 +9,17 @@ const LoadDB = async () => {
 
 LoadDB();
 
+// API to get all blogs
 export async function GET(request) {
-  return NextResponse.json({ message: "Blog - GET" });
   try {
-    await ConnectDB();
-    const blogs = await BlogModel.find();
+    const blogs = await BlogModel.find({});
     return NextResponse.json({ blogs });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
+// API to add a new blog
 export async function POST(request) {
 
   const formData = await request.formData();
@@ -38,7 +38,7 @@ export async function POST(request) {
     category: `${formData.get("category")}`,
     author: `${formData.get("author")}`,
     image: `${imgUrl}`,
-    authorImage: `${formData.get("authorImage")}`,
+    authorImg: `${formData.get("authorImg")}`,
   };
 
   await BlogModel.create(blogData);
