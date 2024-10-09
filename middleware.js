@@ -9,8 +9,6 @@ export async function middleware(request) {
     const cookieStore = cookies();
     const token = cookieStore.get('authToken')?.value;
 
-    console.log('Token:', token);
-
     if (!token) {
       const loginUrl = new URL('/login', request.url);
       return NextResponse.redirect(loginUrl);
@@ -20,7 +18,6 @@ export async function middleware(request) {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       await jwtVerify(token, secret);
     } catch (err) {
-      console.error('JWT Verification Error:', err); 
       const loginUrl = new URL('/login', request.url);
       return NextResponse.redirect(loginUrl);
     }
