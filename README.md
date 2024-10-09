@@ -1,5 +1,7 @@
 # Next.js blog
 
+Next.js full stack blog with an admin panel featuring JWT token authentication.
+
 ## Technologies
 
 - Next.js
