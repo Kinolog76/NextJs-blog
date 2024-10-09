@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.blog-content pre::-webkit-scrollbar,
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -18,6 +24,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 .card-title {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -25,15 +32,18 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
 .blog-content {
   padding-block: 30px;
 }
+
 .blog-content h2 {
   font-size: 32px;
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 15px;
 }
+
 .blog-content h3 {
   font-size: 26px;
   font-weight: 600;
@@ -63,6 +73,7 @@
 }
 
 .blog-content pre {
+  overflow: auto;
   padding: 10px;
   border-radius: 15px;
   background-color: #5555551c;

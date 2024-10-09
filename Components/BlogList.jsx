@@ -21,7 +21,7 @@ function BlogList() {
   };
 
   return (
-    <div>
+    <div className="flex-grow">
       <div className="flex gap-6 my-10 justify-center flex-wrap">
         <button
           onClick={() => handleMenu("All")}
