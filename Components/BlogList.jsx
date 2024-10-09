@@ -20,10 +20,9 @@ function BlogList() {
     console.log(category);
   };
 
-
   return (
     <div>
-      <div className="flex gap-6 my-10 justify-center">
+      <div className="flex gap-6 my-10 justify-center flex-wrap">
         <button
           onClick={() => handleMenu("All")}
           className={`${
@@ -63,7 +62,10 @@ function BlogList() {
       </div>
 
       <div className="flex flex-wrap justify-around gap-2 gap-y-10 mb-16 xl:mx-24">
-        {blogs.filter((item) => menu === "All" ? item : item.category === menu).map((item) => {
+        {blogs
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .filter((item) => (menu === "All" ? item : item.category === menu))
+          .map((item) => {
             return <BlogItem key={item._id} {...item} />;
           })}
       </div>

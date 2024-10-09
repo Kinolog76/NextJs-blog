@@ -5,12 +5,14 @@ import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { marked } from "marked";
 
 function Page() {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     title: "",
     description: "",
+    content: "",
     category: "Startup",
     author: "Vladislav P",
     authorImg: "/author_img.png",
@@ -20,7 +22,6 @@ function Page() {
     const name = event.target.name;
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
-    console.log(data);
   };
 
   const onSubmitHandler = async (event) => {
@@ -28,11 +29,13 @@ function Page() {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
+    const htmlContent = marked(data.content);
+    formData.append("content", htmlContent);
     formData.append("category", data.category);
     formData.append("author", data.author);
     formData.append("authorImg", data.authorImg);
     formData.append("image", image);
-
+    
     try {
       const response = await axios.post("/api/blog", formData);
       console.log(response);
@@ -42,6 +45,7 @@ function Page() {
         setData({
           title: "",
           description: "",
+          content: "",
           category: "Startup",
           author: "Vladislav P",
           authorImg: "/author_img.png",
@@ -83,14 +87,24 @@ function Page() {
           required
         />
         <p className="text-xl mt-4">Blog Description</p>
-        <textarea
+        <input
           onChange={onChangeHandler}
           value={data.description}
           name="description"
-          className="w-full sm:w-[500px] mt-4 px-4 py-3 border resize-y"
+          className="w-full sm:w-[500px] mt-4 px-4 py-3 border"
           type="text"
           placeholder="Description"
-          rows={6}
+          required
+        />
+        <p className="text-xl mt-4">Blog Content</p>
+        <textarea
+          onChange={onChangeHandler}
+          value={data.content}
+          name="content"
+          className="w-full mt-4 px-4 py-3 border resize-y"
+          type="text"
+          placeholder="Content"
+          rows={12}
           required
         />
         <p className="text-xl mt-4">Blog Caregory</p>

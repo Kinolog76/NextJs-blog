@@ -13,12 +13,10 @@ function Subscription() {
   };
 
   const deleteEmail = async (_id) => {
-    console.log(_id);
     try {
       const response = await axios.delete("/api/email", { params: { id: _id } });
       toast.success(response.data.message);
       fetchEmails();
-      console.log('Delete success');
     } catch (error) {
       toast.error("Error deleting Email");
     }
@@ -32,11 +30,11 @@ function Subscription() {
   return (
     <div className="flex flex-col py-5 px-5 sm:pt-12 lg:pl-16">
       <h1 className="text-2xl font-bold">All subscriptions</h1>
-      <div className="relative max-w-[600px] h-[80vh] overflow-x-auto mt-4 border border-gray-400 scrollbar-hide">
+      <div className="relative max-w-[700px] h-[80vh] overflow-x-auto mt-4 border border-gray-400 scrollbar-hide">
         <table className="w-full text-sm text-gray-500">
           <thead className="text-sm text text-gray-100 uppercase bg-gray-700">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 text-left">
                 Email subscription
               </th>
               <th scope="col" className="hidden sm:block px-6 py-3">
