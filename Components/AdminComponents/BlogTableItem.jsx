@@ -1,8 +1,14 @@
-import { formatDate } from "@/helpers/FormatDate.helper";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 
 function BlogTableItem({ authorImg, author, title, date, deleteBlog, _id }) {
+
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return newDate.toLocaleDateString('en-US', options);
+  };
+
   return (
     <tr className="bg-white border-b">
       <th

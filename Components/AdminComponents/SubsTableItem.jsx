@@ -1,6 +1,11 @@
-import { formatDate } from "@/helpers/FormatDate.helper";
-
 function SubsTableItem({ email, date, deleteEmail, _id }) {
+  
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return newDate.toLocaleDateString('en-US', options);
+  };
+  
   return (
     <tr className="bg-white border-b">
       <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-left">
