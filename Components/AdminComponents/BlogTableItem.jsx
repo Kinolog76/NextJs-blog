@@ -1,7 +1,8 @@
 import { assets } from "@/assets/assets"
 import Image from "next/image"
 
-function BlogTableItem ({authorImg, author, title, date}) {
+function BlogTableItem ({authorImg, author, title, date, deleteBlog, _id}) {
+    
   const formatDate = (date) => {
     const newDate = new Date(date)
     const options = { year: 'numeric', month: 'short', day: 'numeric' }
@@ -19,7 +20,7 @@ function BlogTableItem ({authorImg, author, title, date}) {
       <td className="px-6 py-4 text-center">
         {date?formatDate(date):"No date"}
       </td>
-      <td className="px-6 py-4 text-center cursor-pointer font-extrabold text-red-500">
+      <td onClick={() => deleteBlog(_id)} className="px-6 py-4 text-center cursor-pointer font-extrabold text-red-500">
         X
       </td>
     </tr>
