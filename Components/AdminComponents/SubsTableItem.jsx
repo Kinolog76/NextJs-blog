@@ -1,22 +1,16 @@
 import { formatDate } from "@/helpers/FormatDate.helper";
-import { assets } from "@/assets/assets";
-import Image from "next/image";
 
-function BlogTableItem({ authorImg, author, title, date, deleteBlog, _id }) {
+function SubsTableItem({ email, date, deleteEmail, _id }) {
   return (
     <tr className="bg-white border-b">
-      <th
-        scope="row"
-        className="items-center px-6 py-4 gap-3 sm:flex font-medium text-gray-900 whitespace-nowrap">
-        <Image src={authorImg ? authorImg : assets.profile_icon} alt="" width={40} height={40} />
-        <p>{author ? author : "No author"}</p>
+      <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+        <p>{email ? email : "No email"}</p>
       </th>
-      <td className="px-6 py-4">{title ? title : "No title"}</td>
       <td className="px-6 py-4 text-center">{date ? formatDate(date) : "No date"}</td>
       <td
-        onClick={() => deleteBlog(_id)}
+        onClick={() => deleteEmail(_id)}
         className="px-6 py-4 text-center cursor-pointer font-extrabold text-red-500">
-         <svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -37,4 +31,4 @@ function BlogTableItem({ authorImg, author, title, date, deleteBlog, _id }) {
   );
 }
 
-export default BlogTableItem;
+export default SubsTableItem;

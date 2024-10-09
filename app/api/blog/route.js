@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { ConnectDB } from "@/lib/models/db";
-import BlogModel from "@/lib/config/BlogModel";
+import { ConnectDB } from "@/lib/config/db";
+import BlogModel from "@/lib/models/BlogModel";
 import { writeFile } from "fs/promises";
 const fs = require("fs");
 
@@ -10,7 +10,6 @@ const LoadDB = async () => {
 
 LoadDB();
 
-// API to get all blogs
 export async function GET(request) {
   try {
     const blogId = request.nextUrl.searchParams.get("id");
@@ -26,7 +25,6 @@ export async function GET(request) {
   }
 }
 
-// API to add a new blog
 export async function POST(request) {
   const formData = await request.formData();
   const timestamp = Date.now();
@@ -48,12 +46,10 @@ export async function POST(request) {
   };
 
   await BlogModel.create(blogData);
-  console.log("Blog Saved");
-
+  
   return NextResponse.json({ success: true, message: "Blog Added" });
 }
 
-// API to delete a blog
 export async function DELETE(request) {
   const id = await request.nextUrl.searchParams.get("id");
   const blog = await BlogModel.findById(id);

@@ -11,7 +11,7 @@ function BlogItem({ title, description, category, image, _id }) {
       <p className="ml-5 mt-5 px-1 inline-block bg-black text-white text-sm">{category}</p>
       <div className="p-5">
         <h4 className="mb-2 text=lg font-medium tracking-tight text-gray-900">{title}</h4>
-        <p className="mb-3 text-sm text-gray-700 tracking-tight">{description}</p>
+        <p className="mb-3 text-sm text-gray-700 tracking-tight card-description">{description}</p>
         <Link
           href={`/blogs/${_id}`}
           className="inline-flex items-center py-2 font-semibold text-center">

@@ -4,6 +4,11 @@ import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify";
 
+export const metadata = {
+  title: "Admin Panel",
+  description: "Admin Panel",
+};
+
 export default function Layout({ children }) {
   return (
     <>
