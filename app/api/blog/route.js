@@ -12,8 +12,14 @@ LoadDB();
 // API to get all blogs
 export async function GET(request) {
   try {
-    const blogs = await BlogModel.find({});
-    return NextResponse.json({ blogs });
+    const blogId = request.nextUrl.searchParams.get("id");
+    if (blogId) {
+      const blog = await BlogModel.findById(blogId);
+      return NextResponse.json(blog);
+    } else {
+      const blogs = await BlogModel.find({});
+      return NextResponse.json({ blogs });
+    }
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -21,7 +27,6 @@ export async function GET(request) {
 
 // API to add a new blog
 export async function POST(request) {
-
   const formData = await request.formData();
   const timestamp = Date.now();
 
